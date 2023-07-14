@@ -7,7 +7,6 @@ import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,29 +21,24 @@ import java.util.Random;
 import java.util.UUID;
 
 public final class BlackMarketSkull extends JavaPlugin implements Listener {
-    private ConsoleCommandSender clogger;
+
     public WorldGuardHook wghook;
 
     public void onEnable() {
-        clogger = getServer().getConsoleSender();
-        clogger.sendMessage(ChatColor.AQUA + "---------------------------------------");
-        clogger.sendMessage(ChatColor.GREEN + "      Et ma paremini näeksin          ");
-        clogger.sendMessage(ChatColor.AQUA + "---------------------------------------");
-        //this.getLogger().warning("This plugin uses EssentialsX and WorldGuard, make sure those are installed.");
+        this.getLogger().warning("===========================================================================");
+        this.getLogger().warning("This plugin uses EssentialsX and WorldGuard, make sure those are installed.");
+        this.getLogger().warning("===========================================================================");
+
         getServer().getPluginManager().registerEvents(this, this);
 
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
-
-        getLogger().info("getCommand('reloadconfig'): " + getCommand("reloadconfig"));
 
         BlackMarketSkullCommand blackMarketSkullCommand = new BlackMarketSkullCommand(this);
         getCommand("blackmarketskull").setExecutor(blackMarketSkullCommand);
         getCommand("blackmarketskull").setTabCompleter(blackMarketSkullCommand);
 
         this.wghook = new WorldGuardHook(this);
-
-
 
     }
 
@@ -56,7 +50,9 @@ public final class BlackMarketSkull extends JavaPlugin implements Listener {
         double percentage = getConfig().getDouble("percentage");
         if (new Random().nextDouble() > percentage) {
             if (killer != null) {
+
                 if (this.wghook.isLocApplicable(player.getLocation(), killer)) return;
+
                 ItemStack item = getHead();
                 player.getWorld().dropItemNaturally(player.getLocation(), item);
             }
@@ -92,11 +88,5 @@ public final class BlackMarketSkull extends JavaPlugin implements Listener {
     }
     public Component colorize(String text) {
         return LegacyComponentSerializer.legacySection().deserialize(ChatColor.translateAlternateColorCodes('&', text));
-    }
-    @Override
-    public void onDisable() {
-        clogger.sendMessage(ChatColor.DARK_RED + "---------------------------------------");
-        clogger.sendMessage(ChatColor.GOLD + "                Goodbye!                   ");
-        clogger.sendMessage(ChatColor.DARK_RED + "---------------------------------------");
     }
 }

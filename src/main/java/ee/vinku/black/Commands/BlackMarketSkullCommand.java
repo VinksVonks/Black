@@ -25,7 +25,7 @@ public class BlackMarketSkullCommand implements CommandExecutor, TabCompleter {
             if (args[0].equalsIgnoreCase("reload")) {
                 // Reload the plugin's configuration file
                 plugin.reloadConfig();
-                sender.sendMessage("Configuration reloaded!");
+                sender.sendMessage("BlackMarketSkull reloaded!");
             } else if (args[0].equalsIgnoreCase("set") && args.length >= 3) {
                 // Set the value of a configuration option
                 String key = args[1];
@@ -42,11 +42,11 @@ public class BlackMarketSkullCommand implements CommandExecutor, TabCompleter {
                     // If the value is not a valid double, set it as a string
                     plugin.getConfig().set(key, value);
                 }
-                sender.sendMessage("Configuration updated!");
+                sender.sendMessage("BlackMarketSkull updated!");
             } else if (args[0].equalsIgnoreCase("save")) {
                 // Save the changes to the configuration file
                 plugin.saveConfig();
-                sender.sendMessage("Configuration saved!");
+                sender.sendMessage("BlackMarketSkull saved!");
             }
         }
         return true;

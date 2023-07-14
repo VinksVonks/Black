@@ -1,3 +1,6 @@
+########################################
+#This plugin uses EssentialsX and WorldGuard, make sure those are installed.
+########################################
 displayName: §c§lPVP §fTrophy
 lore: Black Market
 #Range 0.0 = 1.0

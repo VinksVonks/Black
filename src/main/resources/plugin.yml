@@ -9,3 +9,6 @@ commands:
   blackmarketskull:
     description: "Base command for the BlackMarketSkull plugin"
     usage: [ BlackMarketSkull ]
+    aliases: [ bm ]
+    permission: BlackMarketSkull.command.bm
+    permission-message: "You do not have the permission!"
