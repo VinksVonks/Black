@@ -1,0 +1,11 @@
+name: BlackMarketSkull
+version: '2.0'
+main: ee.vinku.black.BlackMarketSkull
+api-version: '1.20'
+depend: [WorldGuard]
+loadbefore:
+  - WorldGuard
+commands:
+  blackmarketskull:
+    description: "Base command for the BlackMarketSkull plugin"
+    usage: [ BlackMarketSkull ]
