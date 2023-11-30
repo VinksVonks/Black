@@ -23,11 +23,9 @@ public class BlackMarketSkullCommand implements CommandExecutor, TabCompleter {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String label, String[] args) {
         if (args.length > 0) {
             if (args[0].equalsIgnoreCase("reload")) {
-                // Reload the plugin's configuration file
                 plugin.reloadConfig();
                 sender.sendMessage("BlackMarketSkull reloaded!");
             } else if (args[0].equalsIgnoreCase("set") && args.length >= 3) {
-                // Set the value of a configuration option
                 String key = args[1];
                 StringJoiner valueJoiner = new StringJoiner(" ");
                 for (int i = 2; i < args.length; i++) {
@@ -35,16 +33,13 @@ public class BlackMarketSkullCommand implements CommandExecutor, TabCompleter {
                 }
                 String value = valueJoiner.toString();
                 try {
-                    // Try to parse the value as a double
                     double doubleValue = Double.parseDouble(value);
                     plugin.getConfig().set(key, doubleValue);
                 } catch (NumberFormatException e) {
-                    // If the value is not a valid double, set it as a string
                     plugin.getConfig().set(key, value);
                 }
                 sender.sendMessage("BlackMarketSkull updated!");
             } else if (args[0].equalsIgnoreCase("save")) {
-                // Save the changes to the configuration file
                 plugin.saveConfig();
                 sender.sendMessage("BlackMarketSkull saved!");
             }
@@ -68,7 +63,6 @@ public class BlackMarketSkullCommand implements CommandExecutor, TabCompleter {
                 }
             }
         } else if (args.length == 3 && args[0].equalsIgnoreCase("set")) {
-            // Suggest the current value of the selected key as a completion
             String key = args[1];
             Object value = plugin.getConfig().get(key);
             if (value != null) {
